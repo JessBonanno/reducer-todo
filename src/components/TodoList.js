@@ -64,9 +64,15 @@ export default function TodoList(props) {
                 </ListItemIcon>
                 {/* set the list item text with the value.item  */}
                 <ListItemText id={labelId} primary={task.item} />
+                {task.due && <p style={{ fontStyle: 'italic', fontSize: '.8rem', color: 'blue' }}>Due: {task.due}</p>}
               </ListItem>
               {task.timeCompleted && (
-                <p style={{ fontStyle: 'italic', fontSize: '.8rem', color: 'green' }}>
+                <p
+                  style={{
+                    fontStyle: 'italic',
+                    fontSize: '.8rem',
+                    color: 'green',
+                  }}>
                   Completed on: {task.timeCompleted}
                 </p>
               )}

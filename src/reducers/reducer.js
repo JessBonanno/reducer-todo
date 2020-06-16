@@ -2,32 +2,37 @@ import moment from 'moment';
 
 export const initialState = [
   {
-    item: "Learn about reducers",
+    item: 'Learn about reducers',
     completed: false,
-    id: 3892987589
+    due: '',
+    id: 3892987589,
   },
   {
-    item: "test the app",
+    item: 'test the app',
     completed: false,
-    id: 3892987588
-  }
+    due: '',
+    id: 3892987588,
+  },
 ];
 
 export const listReducer = (state, action) => {
   switch (action.type) {
     //   correctly adding items to state
-    case "ADD_ITEM":
+    case 'ADD_ITEM':
+      // const date = moment(action.payload.due, 'YYYY-MM-DD');
+
       return [
         ...state,
         {
-          item: action.payload,
+          item: action.payload.task,
           completed: false,
-          id: Date.now()
-        }
+          due: action.payload.due,
+          id: Date.now(),
+        },
       ];
 
     //   correctly toggling completed
-    case "TOGGLE_COMPLETED":
+    case 'TOGGLE_COMPLETED':
       let timeCompleted = moment().format('MMMM Do YYYY, h:mm:ss a');
       return [
         ...state.map(item => {
@@ -39,11 +44,11 @@ export const listReducer = (state, action) => {
             };
           }
           return item;
-        })
+        }),
       ];
     //   correctly clearing completed
-    case "CLEAR_COMPLETED":
-      console.log("state in clear: ", state);
+    case 'CLEAR_COMPLETED':
+      console.log('state in clear: ', state);
       return [...state.filter(item => item.completed === false)];
 
     default:
