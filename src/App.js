@@ -13,16 +13,14 @@ function App() {
   //correctly handling changes
   const handleChanges = e => {
     setTask(e.target.value);
-    console.log(task);
   };
   // correctly adding items
   const handleAddItem = (e, date) => {
     e.preventDefault();
     const due = moment(date).format('ddd, MMM Do YYYY');
 
-    console.log(due);
     if (task !== '') {
-      dispatch({ type: 'ADD_ITEM', payload: { task: task, due: due } });
+      dispatch({ type: 'ADD_ITEM', payload: { task: task, due: due, raw: date } });
       setTask('');
     }
   };

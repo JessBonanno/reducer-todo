@@ -5,6 +5,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
+import moment from 'moment';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -46,6 +47,35 @@ export default function TodoList(props) {
 
           return (
             <>
+              {moment(task.raw).isBefore(moment()) && !task.completed && (
+                <p style={{ color: 'red', fontSize: '1rem', margin: 0 }}>
+                  {' '}
+                  <br></br>OverDue!
+                </p>
+              )}
+              {task.due && (
+                <p
+                  style={{
+                    fontStyle: 'italic',
+                    fontSize: '.8rem',
+                    color: 'blue',
+                    margin: 0,
+                  }}>
+                  Due: {task.due}
+                </p>
+              )}
+              {task.timeCompleted && (
+                <p
+                  style={{
+                    fontStyle: 'italic',
+                    fontSize: '.8rem',
+                    color: 'green',
+                    margin: 0,
+                  }}>
+                  Completed on: {task.timeCompleted}
+                </p>
+              )}
+
               <ListItem
                 key={task.id}
                 role={undefined}
@@ -64,18 +94,7 @@ export default function TodoList(props) {
                 </ListItemIcon>
                 {/* set the list item text with the value.item  */}
                 <ListItemText id={labelId} primary={task.item} />
-                {task.due && <p style={{ fontStyle: 'italic', fontSize: '.8rem', color: 'blue' }}>Due: {task.due}</p>}
               </ListItem>
-              {task.timeCompleted && (
-                <p
-                  style={{
-                    fontStyle: 'italic',
-                    fontSize: '.8rem',
-                    color: 'green',
-                  }}>
-                  Completed on: {task.timeCompleted}
-                </p>
-              )}
             </>
           );
         })}

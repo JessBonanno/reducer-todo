@@ -4,13 +4,15 @@ export const initialState = [
   {
     item: 'Learn about reducers',
     completed: false,
-    due: '',
+    due: moment().format('ddd, MMM Do YYYY'),
+    raw: '',
     id: 3892987589,
   },
   {
     item: 'test the app',
     completed: false,
-    due: '',
+    due: moment().format('ddd, MMM Do YYYY'),
+    raw: '',
     id: 3892987588,
   },
 ];
@@ -27,6 +29,7 @@ export const listReducer = (state, action) => {
           item: action.payload.task,
           completed: false,
           due: action.payload.due,
+          raw: action.payload.raw,
           id: Date.now(),
         },
       ];
