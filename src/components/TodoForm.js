@@ -26,7 +26,6 @@ export default function TodoForm(props) {
         onSubmit={props.handleAddItem}
 
       >
-        {/* add onclick to add text to state */}
         <TextField
           value={props.task}
           id="standard-basic"

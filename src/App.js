@@ -1,5 +1,6 @@
 import React, { useState, useReducer } from "react";
 import { initialState, listReducer } from "./reducers/reducer";
+import moment from 'moment';
 
 import "./App.css";
 
@@ -34,6 +35,8 @@ function App() {
   };
 
   const [state, dispatch] = useReducer(listReducer, initialState);
+
+  console.log(moment().format('MMMM Do YYYY, h:mm:ss a'));
 
   return (
     <div className="App">

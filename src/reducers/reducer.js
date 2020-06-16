@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export const initialState = [
   {
     item: "Learn about reducers",
@@ -26,12 +28,14 @@ export const listReducer = (state, action) => {
 
     //   correctly toggling completed
     case "TOGGLE_COMPLETED":
+      let timeCompleted = moment().format('MMMM Do YYYY, h:mm:ss a');
       return [
         ...state.map(item => {
           if (item.id === action.payload.id) {
             return {
               ...item,
-              completed: !item.completed
+              completed: !item.completed,
+              timeCompleted: timeCompleted,
             };
           }
           return item;
