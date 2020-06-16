@@ -1,0 +1,13 @@
+h1 {
+  text-align: center;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.todo-list {
+  padding: 2% 10%;
+}
